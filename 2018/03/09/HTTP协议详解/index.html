@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://showver.github.io">
-  <title>hexo+github搭建属于自己的在线博客 | Showver的博客</title>
+  <title>HTTP协议详解 | Showver的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown解析文章，在几秒内，即可利用靓丽的主题生成静态网页。">
-<meta name="keywords" content="hexo">
+  <meta name="description" content="引言HTTP是一个属于应用层的面向对象的协议，它的主要特点可概括如下：">
+<meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo+github搭建属于自己的在线博客">
-<meta property="og:url" content="http://showver.github.io/2018/03/01/hexo+github搭建属于自己的在线博客/index.html">
+<meta property="og:title" content="HTTP协议详解">
+<meta property="og:url" content="http://showver.github.io/2018/03/09/HTTP协议详解/index.html">
 <meta property="og:site_name" content="Showver的博客">
-<meta property="og:description" content="简介hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown解析文章，在几秒内，即可利用靓丽的主题生成静态网页。">
+<meta property="og:description" content="引言HTTP是一个属于应用层的面向对象的协议，它的主要特点可概括如下：">
 <meta property="og:locale" content="chinese">
-<meta property="og:updated_time" content="2018-02-28T17:24:56.298Z">
+<meta property="og:updated_time" content="2018-03-15T14:38:58.257Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo+github搭建属于自己的在线博客">
-<meta name="twitter:description" content="简介hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown解析文章，在几秒内，即可利用靓丽的主题生成静态网页。">
+<meta name="twitter:title" content="HTTP协议详解">
+<meta name="twitter:description" content="引言HTTP是一个属于应用层的面向对象的协议，它的主要特点可概括如下：">
   
     <link rel="alternative" href="/atom.xml" title="Showver的博客" type="application/atom+xml">
   
@@ -159,146 +159,106 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hexo+github搭建属于自己的在线博客" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-HTTP协议详解" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      hexo+github搭建属于自己的在线博客
+      HTTP协议详解
     </h1>
   
 
         
-        <a href="/2018/03/01/hexo+github搭建属于自己的在线博客/" class="archive-article-date">
-  	<time datetime="2018-02-28T16:13:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-01</time>
+        <a href="/2018/03/09/HTTP协议详解/" class="archive-article-date">
+  	<time datetime="2018-03-09T02:36:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown解析文章，在几秒内，即可利用靓丽的主题生成静态网页。<br><a id="more"></a></p>
-<h2 id="总览步骤："><a href="#总览步骤：" class="headerlink" title="总览步骤："></a>总览步骤：</h2><ol>
-<li>安装NodeJs软件，用于使用npm工具；</li>
-<li>安装Git软件，用于与Github连接；</li>
-<li>安装hexo博客框架，使用NodeJs的npm工具；</li>
-<li>部署本地hexo博客以及博文编辑；</li>
-<li>部署基于github的在线博客；</li>
-<li>优化部署与管理；</li>
-<li>附录。</li>
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>HTTP是一个属于应用层的面向对象的协议，它的主要特点可概括如下：<a id="more"></a></p>
+<ol>
+<li>支持B/S架构，也支持C/S架构；</li>
+<li>简单快速：向服务器请求数据时，只需要传送<strong>请求方法</strong>和<strong>请求路径</strong>；</li>
+<li>灵活：允许传输任意类型的数据对象，由Content-Type加以标记；</li>
+<li>无连接：限制每次连接只处理一个请求；</li>
+<li>无状态：协议对于事务处理没有记忆功能。</li>
 </ol>
-<h2 id="一、安装NodeJs"><a href="#一、安装NodeJs" class="headerlink" title="一、安装NodeJs"></a>一、安装NodeJs</h2><p>进入<a href="http://nodejs.cn/" target="_blank" rel="noopener">nodejs中文网</a>进行下载安装，速度还是可以的，安装过程一路下一步即可，这里不再赘述。</p>
-<h2 id="二、安装Git"><a href="#二、安装Git" class="headerlink" title="二、安装Git"></a>二、安装Git</h2><p>在Windows上使用Git，可以从<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git官网</a>直接下载安装程序，（网速慢的同学请移步<a href="https://pan.baidu.com/s/1kU5OCOB?errno=0&amp;errmsg=Auth%20Login%20Sucess&amp;&amp;bduss=&amp;ssnerror=0&amp;traceid=#list/path=/pub/git" target="_blank" rel="noopener">国内镜像</a>），也是一路下一步即可。</p>
-<h2 id="三、安装Hexo"><a href="#三、安装Hexo" class="headerlink" title="三、安装Hexo"></a>三、安装Hexo</h2><p>当然，我们可以使用nodejs自带的npm命令进行下载，但速度上会比较慢，可能还会出现下载包的不完整，所以我们使用淘宝的npm镜像进行安装。</p>
-<p><strong>3.1、安装淘宝npm镜像</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm --registry https://registry.npm.taobao.org info underscore</span><br></pre></td></tr></table></figure>
-<p><strong>3.2、使用cnpm命令安装hexo</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">`cnpm install hexo-cli -g`</span><br><span class="line">`cnpm install hexo -g`</span><br><span class="line">--- 其中，hexo-cli是客户端，hexo是服务端，-g代表全局安装</span><br></pre></td></tr></table></figure>
-<p>至此，环境准备告一段落，下面开始正式部署和优化</p>
-<h2 id="四、本地Hexo的使用"><a href="#四、本地Hexo的使用" class="headerlink" title="四、本地Hexo的使用"></a>四、本地Hexo的使用</h2><p><strong>4.1   部署</strong></p>
+<p><strong>请求方法（所有方法全为大写）</strong></p>
 <ul>
-<li>新建一个存放博客的文件夹，例如：blog</li>
-<li>双击进入blog文件夹，右键选择<code>Git Bash Here</code>命令行界面</li>
-<li>初始化blog，输入<code>hexo init</code></li>
-<li>模块安装，输入<code>cnpm install</code>，会检查node_modules目录，并自动安装</li>
-<li>输入<code>hexo g</code>，生成静态文件</li>
-<li>输入<code>hexo s</code>，启动服务器</li>
-<li>在浏览器中打开<code>localhost:4000</code>，成功的话就可以看到博客页面了</li>
+<li>GET     请求获取Request-URI所标识的资源</li>
+<li>POST    在Request-URI所标识的资源后附加新的数据</li>
+<li>HEAD    请求获取由Request-URI所标识的资源的响应消息报头</li>
+<li>PUT     请求服务器存储一个资源，并用Request-URI作为其标识</li>
+<li>DELETE  请求服务器删除Request-URI所标识的资源</li>
+<li>TRACE   请求服务器回送收到的请求信息，主要用于测试或诊断</li>
+<li>CONNECT 保留将来使用</li>
+<li>OPTIONS 请求查询服务器的性能，或者查询与资源相关的选项和需求</li>
 </ul>
-<p><strong>4.2   新建博文</strong></p>
-<p>输入<code>hexo new &quot;文章题目&quot;</code>，确认后，source/_posts目录中多了一个<code>.md文件</code>，这就是我们刚才新建的博文。</p>
-<blockquote>
-<p>注:新建博文后，需要执行<code>hexo s -g</code>，重新生成静态文件并启动服务器。</p>
-</blockquote>
-<p><strong>4.3   编辑博文</strong></p>
-<p>用编辑器打开<code>.md文件</code>就可以正经写博文了，但你会发现根本无从下手，你缺少的是强有力的辅助<code>markdown编辑器</code>，它可以帮助你快速的写博文，无须关注样式的实现，当然，你也可以使用传统的html+css。</p>
-<p><strong>4.4   markdown的使用</strong></p>
-<p>首先，你必须得了解markdown的<a href="https://www.jianshu.com/p/b03a8d7b1719" target="_blank" rel="noopener">基本语法</a>，同时借助hexo-admin插件即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cnpm install hexo-admin --save</span><br><span class="line">--- 本地安装hexo-admin插件</span><br><span class="line">hexo s -g</span><br><span class="line">--- 重新生成静态文件，并开启服务器</span><br></pre></td></tr></table></figure>
-<p>现在，浏览器访问<code>localhost:4000/admin</code>即可编辑发布。</p>
-<blockquote>
-<p>虽然现在可以快速编辑博文了，但还不够完美，hexo-admin编辑markdown没有快捷键！</p>
-</blockquote>
-<p>网上有很多印象笔记支持快捷键操作，比如：马克飞象，简书等。<br>本人使用的是<a href="https://www.zybuluo.com/mdeditor" target="_blank" rel="noopener">作业部落</a>里的在线markdown,它每隔3s左右就会自动保存，你不使用的时候，直接关闭网页就可以了，很方便！！</p>
-<p><strong>4.5   博客优化</strong></p>
-<p>4.5.1、主题yilia的使用</p>
-<blockquote>
-<p>安装：输入以下命令，下载yilia主题<br><code>git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</code><br>配置：修改_config.yml文件，将theme: <strong>landscape</strong>（修改为<strong>yilia</strong>）</p>
-</blockquote>
-<p>修改完毕后，<code>hexo s -g</code>，呃…修改了静态文件，必须要有这步操作。</p>
-<h2 id="五、部署基于github的在线博客"><a href="#五、部署基于github的在线博客" class="headerlink" title="五、部署基于github的在线博客"></a>五、部署基于github的在线博客</h2><p><strong>5.1   创建github账号</strong></p>
-<p>要想使用github第一步当然是注册github账号了， github官网地址：<a href="https://github.com/。" target="_blank" rel="noopener">https://github.com/。</a> 之后就可以创建仓库了。</p>
-<p><strong>5.2   创建公共库</strong></p>
-<p>登陆github账户后，点击右上角<code>+</code>号，Create a New Repository，填好名称后Create，库名称的格式为，你的username.github.io，例如，我的username为showver，所以公共库名就为，showver.github.io。</p>
-<p><strong>5.3   连接hexo与github</strong></p>
-<p>有了github公共库，我们就可以将hexo代码托管到远端（remote）。<br>配置：打开配置文件_config.yml，拉到底部</p>
-<pre>
-deploy:
-  type: git
-  repo: https://github.com/showver/showver.github.io.git
-  branch: master
-</pre>
-
-<pre><code>注意：冒号后面有个空格，并且空格为半角空格。
-</code></pre><p>为了能够使Hexo部署到GitHub上，需要安装一个插件：</p>
-<blockquote>
-<p><code>cnpm install hexo-deployer-git --save</code><br>— 其中，–save代表本地安装</p>
-</blockquote>
-<p>这时，就可以使用<code>hexo d</code>，将代码部署到github。</p>
-<h2 id="六、优化部署与管理"><a href="#六、优化部署与管理" class="headerlink" title="六、优化部署与管理"></a>六、优化部署与管理</h2><p><strong>6.1   概述</strong></p>
-<p>Hexo部署到GitHub上的文件，是.md（你的博文）转化之后的.html（静态网页）。因此，当你重装电脑或者想在不同电脑上修改博客时，就不可能了（除非你自己写html o(^▽^)o ）。</p>
-<p>其实，Hexo生成的网站文件中有.gitignore文件，因此它的本意也是想我们将Hexo生成的网站文件存放到GitHub上进行管理的（而不是用U盘或者云备份啦(╬▔皿▔)凸）。这样，不仅解决了上述的问题，还可以通过git的版本控制追踪你的博文的修改过程，是极赞的。</p>
-<p>但是，如果每一个GitHub Pages都需要创建一个额外的仓库来存放Hexo网站文件，我感觉很麻烦（10个项目需要20个仓库(ˉ▽ˉ；)…）。</p>
-<p>所以，我利用了分支！！！</p>
-<p>简单地说，每个想建立GitHub Pages的仓库，起码有两个分支，一个用来存放Hexo网站的文件，一个用来发布网站。</p>
-<p>下面以我的博客作为例子详细地讲述。</p>
-<p><strong>6.2   git与github的连接</strong></p>
-<p>了解了能够在本地使用git管理github上的项目，需要进行一些配置，这里介绍SSH的方法</p>
-<blockquote>
-<p>1、检查电脑是否已经有ssh key；<br><code>ls -al ~/.ssh</code><br>2、如果没有SSH KEY，则生成新的SSH KEY，需要注册github账号时用的邮箱；<br><code>ssh-keygen -t rsa -C &quot;your_email@youremail.com&quot;</code><br>之后一路回车确认；<br>3、将拷贝的id_rsa.pub内容导入到github；<br>在GitHub右上方点击头像，选择”Settings”，在右边的”Personal settings”侧边栏选择”SSH Keys”。接着粘贴key，点击”Add key”按钮<br>4、最后，测试链接；<br><code>ssh -T git@github.com</code><br>如果是第一次的会提示是否continue，输入yes就会看到：You’ve successfully authenticated, but GitHub does not provide shell access 。这就表示已成功连上github。</p>
-</blockquote>
-<p>接下来我们要做的就是把本地仓库传到github上去，在此之前还需要设置username和email，因为github每次commit都会记录他们。</p>
-<blockquote>
-<p><code>git config --global user.name &quot;your name&quot;</code><br><code>git config --global user.email &quot;your_email@youremail.com&quot;</code></p>
-</blockquote>
-<p><strong>6.3   博客搭建流程</strong></p>
-<p>1、在博客仓库创建分支hexo，并设置为默认分支；</p>
-<p>2、将博客仓库clone至本地，使用git命令拷贝仓库<br><code>git clone git@github.com:CrazyMilk/CrazyMilk.github.io.git</code></p>
-<p>3、将本地搭建的hexo文件夹里的_config.yml，themes/，source，scffolds/，package.json，.gitignore文件复制到你克隆下来的仓库文件夹，即Username.github.io；（Username是你自己的用户名）</p>
-<p>4、将themes/yilia/(本文用的是yilia主题)中的.git/删除，否则无法将主题文件夹push；</p>
-<p>5、在Username.github.io文件夹执行npm install，npm install hexo-deployer-git(这里可以看看分支是不是显示为Hexo)；</p>
-<p>6、执行git add .，git commit -m “提交文件”，git push origin hexo，来提交hexo网站源文件；</p>
-<p>7、执行hexo g -d 将生成静态网页部署到github上。</p>
-<p>这样一来，在GitHub上的showver.github.io仓库就有两个分支，一个hexo分支用来存放网站的原始文件，一个master分支用来存放生成的静态网页。无敌！！！</p>
-<p><strong>6.4   博客管理流程</strong></p>
-<p>在本地对博客修改（包括修改主题样式、发布新文章等）后</p>
-<p>1、执行git add，git commit -m “提交文件”，git push origin hexo来提交hexo网站源文件；</p>
-<p>2、执行hexo g -d 生成静态网页部署到github上；<br>（每次发布重复这两步，它们之间没有严格的顺序）</p>
-<p><strong>6.5   博客恢复流程</strong></p>
-<p>换电脑想改博客：<br>1、安装git；<br>2、安装Nodejs和npm；<br>3、使用克隆命令将仓库拷贝至本地；<br>4、在文件夹内执行命令npm install hexo-cli -g、npm install、npm install hexo-deployer-git；</p>
-<h2 id="七、附录"><a href="#七、附录" class="headerlink" title="七、附录"></a>七、附录</h2><p><strong>7.1   常用的操作</strong></p>
+<p><strong>请求路径</strong></p>
+<p>HTTP使用统一资源标识符（Uniform Resource Identifiers, URI）来传输数据和建立连接。一个完整的URL包括以下几部分：</p>
 <ul>
-<li><code>hexo g</code> == hexo generate， 生成静态文件</li>
-<li><code>hexo s</code> == hexo server，启动服务器</li>
-<li><code>hexo d</code> == hexo deploy，部署网站</li>
-<li><code>hexo n</code> == hexo new，新建博文</li>
-<li><code>hexo clear</code> ，清除缓存文件</li>
+<li><p>协议部分：该URL的协议部分为“http：”，这代表网页使用的是HTTP协议。在Internet中可以使用多种协议，如HTTP，FTP等等本例中使用的是HTTP协议。在”HTTP”后面的“//”为分隔符</p>
+</li>
+<li><p>域名部分：该URL的域名部分为“<a href="http://www.aspxfans.com”。一个URL中，也可以使用IP地址作为域名使用" target="_blank" rel="noopener">www.aspxfans.com”。一个URL中，也可以使用IP地址作为域名使用</a></p>
+</li>
+<li><p>端口部分：跟在域名后面的是端口，域名和端口之间使用“:”作为分隔符。端口不是一个URL必须的部分，如果省略端口部分，将采用默认端口</p>
+</li>
+<li><p>虚拟目录部分：从域名后的第一个“/”开始到最后一个“/”为止，是虚拟目录部分。虚拟目录也不是一个URL必须的部分。本例中的虚拟目录是“/news/”</p>
+</li>
+<li><p>文件名部分：从域名后的最后一个“/”开始到“？”为止，是文件名部分，如果没有“?”,则是从域名后的最后一个“/”开始到“#”为止，是文件部分，如果没有“？”和“#”，那么从域名后的最后一个“/”开始到结束，都是文件名部分。本例中的文件名是“index.asp”。文件名部分也不是一个URL必须的部分，如果省略该部分，则使用默认的文件名</p>
+</li>
+<li><p>锚部分：从“#”开始到最后，都是锚部分。本例中的锚部分是“name”。锚部分也不是一个URL必须的部分</p>
+</li>
+<li><p>参数部分：从“？”开始到“#”为止之间的部分为参数部分，又称搜索部分、查询部分。本例中的参数部分为“boardID=5&amp;ID=24618&amp;page=1”。参数可以允许有多个参数，参数与参数之间用“&amp;”作为分隔符。</p>
+</li>
 </ul>
-<p><strong>7.2   目录说明</strong></p>
+<h2 id="HTTP协议—-请求篇详解"><a href="#HTTP协议—-请求篇详解" class="headerlink" title="HTTP协议—-请求篇详解"></a>HTTP协议—-请求篇详解</h2><p>http请求由四部分组成，分别是：请求行（request line）、请求报头（header）、空行、请求正文</p>
+<ol>
+<li><p>请求行格式：“Method Request-URL HTTP-Version CRLF”</p>
+<blockquote>
+<p>Method表示请求方法；<br>Request-URI是一个统一资源标识符；<br>HTTP-Version表示请求的HTTP协议版本；<br>CRLF表示回车和换行</p>
+</blockquote>
+</li>
+<li><p>请求报头，HOST将指出请求的目的地.User-Agent,服务器端和客户端脚本都能访问它,它是浏览器类型检测逻辑的重要基础</p>
+</li>
+<li><p>请求正文也叫主体，可以添加任意的其他数据。</p>
+</li>
+</ol>
+<h2 id="HTTP协议—-响应篇详解"><a href="#HTTP协议—-响应篇详解" class="headerlink" title="HTTP协议—-响应篇详解"></a>HTTP协议—-响应篇详解</h2><p>http响应也由四部分组成，分别是：状态行、响应报头、空行、响应正文</p>
+<ol>
+<li><p>状态行格式：“HTTP-Version Status-Code Reason-Phrase CRLF”</p>
+<blockquote>
+<p>HTTP-Version表示服务器HTTP协议的版本；  Status-Code表示服务器发回的响应状态代码；<br>Reason-Phrase表示状态代码的文本描述。</p>
+</blockquote>
+<p><strong>状态代码（Status-Code）</strong></p>
+</li>
+</ol>
 <ul>
-<li>_config.yml站点的配置文件，需要拷贝；</li>
-<li>themes/主题文件夹，需要拷贝；</li>
-<li>source/博客文章的.md文件，需要拷贝；</li>
-<li>scaffolds/文章的模板，需要拷贝；</li>
-<li>package.json安装包的名称，需要拷贝；</li>
-<li>.gitignore限定在push时哪些文件可以忽略，需要拷贝；</li>
-<li>.git/主题和站点都有，标志这是一个git项目，不需要拷贝；</li>
-<li>node_modules/是安装包的目录，在执行npm install的时候会重新生成，不需要拷贝；</li>
-<li>public是hexo g生成的静态网页，不需要拷贝；</li>
-<li>.deploy_git同上，hexo g也会生成，不需要拷贝；</li>
-<li>db.json文件，不需要拷贝；</li>
+<li>1xx：指示信息–表示请求已接收，继续处理</li>
+<li>2xx：成功–表示请求已被成功接收、理解、接受</li>
+<li>3xx：重定向–要完成请求必须进行更进一步的操作</li>
+<li>4xx：客户端错误–请求有语法错误或请求无法实现</li>
+<li><p>5xx：服务器端错误–服务器未能实现合法的请求</p>
+<ol>
+<li><p>响应报头，Date:生成响应的日期和时间；Content-Type:指定了MIME类型的HTML(text/html),编码类型是UTF-8。</p>
+</li>
+<li><p>响应正文就是服务器返回的资源的内容 。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="GET和POST请求的区别"><a href="#GET和POST请求的区别" class="headerlink" title="GET和POST请求的区别"></a>GET和POST请求的区别</h2><p>详见<a href="http://mp.weixin.qq.com/s?__biz=MzI3NzIzMzg3Mw==&amp;mid=100000054&amp;idx=1&amp;sn=71f6c214f3833d9ca20b9f7dcd9d33e4#rd" target="_blank" rel="noopener">99%的人理解错了HTTP中GET与POST的区别</a></p>
+<ul>
+<li>GET和POST的底层都是TCP/IP,都属于TCP链接；</li>
+<li>GET把参数包含在URL中，POST通过request body传递参数；</li>
+<li>GET后退按钮/刷新无害，POST数据会被重新提交；</li>
+<li>GET能被缓存、书签可收藏，POST不能缓存、书签不能收藏 ；</li>
+<li>GET对数据长度有限制（2kb），POST无限制；</li>
+<li>GET明文传输数据，不安全；POST参数不会被保存在浏览器历史或 web 服务器日志中，比较安全。</li>
 </ul>
 
       
@@ -329,17 +289,6 @@ deploy:
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -390,7 +339,7 @@ deploy:
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://showver.github.io/2018/03/01/hexo+github搭建属于自己的在线博客/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://showver.github.io/2018/03/09/HTTP协议详解/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -404,15 +353,11 @@ deploy:
   
 <nav id="article-nav">
   
-    <a href="/2018/03/09/从输入网址到页面展示，经历了什么？/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          从输入网址到页面展示，经历了什么？
-        
-      </div>
-    </a>
   
+    <a href="/2018/03/09/从输入网址到页面展示，经历了什么？/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">从输入网址到页面展示，经历了什么？</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
