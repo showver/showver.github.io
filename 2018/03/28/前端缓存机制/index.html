@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://showver.github.io">
   <title>前端缓存机制 | Showver的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="引言在前端项目体验中最直观的就是网页的浏览速度，所以项目开发中在速度方面的优化最主要的就是缓存。&amp;lt;!-- more --&amp;gt; 缓存就相当于是对资源的一种副本实现，不管是在客户端还是在服务端存储着，用相同的URL进行请求，直接从副本中请求资源而不再访问源服务器。 缓存的优势 提高访问速度：缓存相对服务端离用户更近，所以在请求过程中从缓存中取内容比在源服务器上取的内容用的时间更少，加快了用户">
+  <meta name="description" content="引言  在前端项目体验中最直观的就是网页的浏览速度，所以项目开发中在速度方面的优化最主要的就是缓存。">
 <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端缓存机制">
 <meta property="og:url" content="http://showver.github.io/2018/03/28/前端缓存机制/index.html">
 <meta property="og:site_name" content="Showver的博客">
-<meta property="og:description" content="引言在前端项目体验中最直观的就是网页的浏览速度，所以项目开发中在速度方面的优化最主要的就是缓存。&amp;lt;!-- more --&amp;gt; 缓存就相当于是对资源的一种副本实现，不管是在客户端还是在服务端存储着，用相同的URL进行请求，直接从副本中请求资源而不再访问源服务器。 缓存的优势 提高访问速度：缓存相对服务端离用户更近，所以在请求过程中从缓存中取内容比在源服务器上取的内容用的时间更少，加快了用户">
+<meta property="og:description" content="引言  在前端项目体验中最直观的就是网页的浏览速度，所以项目开发中在速度方面的优化最主要的就是缓存。">
 <meta property="og:locale" content="chinese">
-<meta property="og:updated_time" content="2018-03-15T15:30:57.515Z">
+<meta property="og:updated_time" content="2018-03-15T15:37:52.337Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端缓存机制">
-<meta name="twitter:description" content="引言在前端项目体验中最直观的就是网页的浏览速度，所以项目开发中在速度方面的优化最主要的就是缓存。&amp;lt;!-- more --&amp;gt; 缓存就相当于是对资源的一种副本实现，不管是在客户端还是在服务端存储着，用相同的URL进行请求，直接从副本中请求资源而不再访问源服务器。 缓存的优势 提高访问速度：缓存相对服务端离用户更近，所以在请求过程中从缓存中取内容比在源服务器上取的内容用的时间更少，加快了用户">
+<meta name="twitter:description" content="引言  在前端项目体验中最直观的就是网页的浏览速度，所以项目开发中在速度方面的优化最主要的就是缓存。">
   
     <link rel="alternative" href="/atom.xml" title="Showver的博客" type="application/atom+xml">
   
@@ -179,9 +179,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><pre><code>在前端项目体验中最直观的就是网页的浏览速度，所以项目开发中在速度方面的优化最主要的就是缓存。&lt;!-- more --&gt;
-缓存就相当于是对资源的一种副本实现，不管是在客户端还是在服务端存储着，用相同的URL进行请求，直接从副本中请求资源而不再访问源服务器。
-</code></pre><h2 id="缓存的优势"><a href="#缓存的优势" class="headerlink" title="缓存的优势"></a>缓存的优势</h2><ul>
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>  在前端项目体验中最直观的就是网页的浏览速度，所以项目开发中在速度方面的优化最主要的就是缓存。<a id="more"></a><br>  缓存就相当于是对资源的一种副本实现，不管是在客户端还是在服务端存储着，用相同的URL进行请求，直接从副本中请求资源而不再访问源服务器。</p>
+<h2 id="缓存的优势"><a href="#缓存的优势" class="headerlink" title="缓存的优势"></a>缓存的优势</h2><ul>
 <li><p>提高访问速度：缓存相对服务端离用户更近，所以在请求过程中从缓存中取内容比在源服务器上取的内容用的时间更少，加快了用户体验。</p>
 </li>
 <li><p>降低网络传输：副本被重复使用，大大降低了用户的带宽使用，其实也是一种变相的省钱（如果流量要付费的话），同时保证了带宽请求在一个低水平上，更容易维护了。</p>

@@ -180,33 +180,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><pre><code>在前端项目体验中最直观的就是网页的浏览速度，所以项目开发中在速度方面的优化最主要的就是缓存。&lt;!-- more --&gt;
-缓存就相当于是对资源的一种副本实现，不管是在客户端还是在服务端存储着，用相同的URL进行请求，直接从副本中请求资源而不再访问源服务器。
-</code></pre><h2 id="缓存的优势"><a href="#缓存的优势" class="headerlink" title="缓存的优势"></a>缓存的优势</h2><ul>
-<li><p>提高访问速度：缓存相对服务端离用户更近，所以在请求过程中从缓存中取内容比在源服务器上取的内容用的时间更少，加快了用户体验。</p>
-</li>
-<li><p>降低网络传输：副本被重复使用，大大降低了用户的带宽使用，其实也是一种变相的省钱（如果流量要付费的话），同时保证了带宽请求在一个低水平上，更容易维护了。</p>
-</li>
-</ul>
-<h2 id="缓存的分类"><a href="#缓存的分类" class="headerlink" title="缓存的分类"></a>缓存的分类</h2><p>从客户端到服务器，所涉及到的缓存有：浏览器缓存、h5本地离线存储、CDN缓存、代理服务器缓存、网关缓存。</p>
-<h2 id="浏览器缓存："><a href="#浏览器缓存：" class="headerlink" title="浏览器缓存："></a>浏览器缓存：</h2><ul>
-<li><p>meta设置</p>
-<p> meta http-equiv=pragma content=no-cache<br>禁止浏览器从本地计算机的缓存中访问页面内容。上述设定，访问者将无法脱机浏览。</p>
-<p> meta http-equiv=Cache-Control content=no-cache,must-revalidate<br>— Cache-Control指定请求和响应遵循的缓存机制；<br>— no-cache指示请求或响应消息不能缓存；<br>— must-revalidate，对于客户机的每次请求，代理服务器必须想服务器验证缓存是否过时;</p>
-<p>   meta http-equiv=expires content=0<br>可以用于设定网页的到期时间。一旦网页过期，必须到服务器上重新传输。</p>
-</li>
-<li><p>http header设置</p>
-<p>设置cache-control、expires、etags、last-modified<br>cache-control<br>— public表明其他用户也可以利用缓存<br>— private：表明缓存服务器只对特定用户提供资源缓存的服务，对于其他的用户，缓存服务器不会做出响应。<br>— no-cache：表明不缓存过期资源，其实是为了防止拿到过期的资源。<br>— no-store：暗示请求或响应中包含机密信息，是真正的禁用缓存。<br>— max-age：max-age = 秒，HTTP 1.1版本，资源在本地缓存多少秒。<br>expires<br>— Expires = 时间，HTTP 1.0 版本，缓存的载止时间，允许客户端在这个时间之前不去检查（发请求），Expires 的一个缺点就是，返回的到期时间是服务器端的时间，这样存在一个问题，如果客户端的时间与服务器的时间相差很大，那么误差就很大，所以在HTTP 1.1版开始，使用Cache-Control max-age=秒替代。<br>注：如果max-age和expires同时存在，以Cache-Control的max-age为准。<br>etags<br>根据实体内容生成一段hash字符串，标识资源的状态，由服务端产生，资源改变这个值就会改变，个人感觉类似于资源的一种抽象映射。<br>last-modified<br>— last-modifiedMon, 21 Nov 2016 032547 GMT，表明资源最后更新的时间。</p>
-</li>
-</ul>
-<h2 id="h5本地离线存储"><a href="#h5本地离线存储" class="headerlink" title="h5本地离线存储"></a>h5本地离线存储</h2><p> localstorage和sessionstorage</p>
-<ul>
-<li>localstorage是永久存储，而sessionstorage当窗口关闭的时候失效。</li>
-<li>localstorage对于同源窗口来说是可以共享的，但是sessionstorage在不同的窗口不共享。</li>
-</ul>
-<h2 id="CDN缓存："><a href="#CDN缓存：" class="headerlink" title="CDN缓存："></a>CDN缓存：</h2><p>   cdn（Content Delivery Network），即就是内容分发网络，就相当于是在客户端和服务端之间加一个cdn层，用户在浏览网站的时候，cdn会选择一个离用户最近的cdn边缘节点来响应用户的请求，这不但加快了用户体验速度也减轻了源服务器的负载。</p>
-<p>   工作原理：用户通过输入域名来访问页面，首先进行dns处理，dns解析服务器会将用户访问请求定位到离用户最近、负载最轻的cdn缓存服务器上，返回该cdn节点的ip地址，缓存服务器拿到数据后，一方面将数据返回浏览器，另一方面进行本地保存，之后再次访问，数据将从cdn缓存服务器中被返回。</p>
-
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>  在前端项目体验中最直观的就是网页的浏览速度，所以项目开发中在速度方面的优化最主要的就是缓存。
+        
+          <a class="article-more-a" href="/2018/03/28/前端缓存机制/#more">more >></a>
+        
       
 
       
@@ -656,7 +633,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="简述同步和异步的区别"><a href="#简述同步和异步的区别" class="headerlink" title="简述同步和异步的区别 ##"></a>简述同步和异步的区别 ##
+        <h2 id="简述同步和异步的区别"><a href="#简述同步和异步的区别" class="headerlink" title="简述同步和异步的区别 ##     "></a>简述同步和异步的区别 ##
         
           <a class="article-more-a" href="/2018/02/24/前端必备知识点/#more">more >></a>
         
