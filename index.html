@@ -160,6 +160,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-前端缓存机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/28/前端缓存机制/">前端缓存机制</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/28/前端缓存机制/" class="archive-article-date">
+  	<time datetime="2018-03-28T02:36:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><pre><code>在前端项目体验中最直观的就是网页的浏览速度，所以项目开发中在速度方面的优化最主要的就是缓存。&lt;!-- more --&gt;
+缓存就相当于是对资源的一种副本实现，不管是在客户端还是在服务端存储着，用相同的URL进行请求，直接从副本中请求资源而不再访问源服务器。
+</code></pre><h2 id="缓存的优势"><a href="#缓存的优势" class="headerlink" title="缓存的优势"></a>缓存的优势</h2><ul>
+<li><p>提高访问速度：缓存相对服务端离用户更近，所以在请求过程中从缓存中取内容比在源服务器上取的内容用的时间更少，加快了用户体验。</p>
+</li>
+<li><p>降低网络传输：副本被重复使用，大大降低了用户的带宽使用，其实也是一种变相的省钱（如果流量要付费的话），同时保证了带宽请求在一个低水平上，更容易维护了。</p>
+</li>
+</ul>
+<h2 id="缓存的分类"><a href="#缓存的分类" class="headerlink" title="缓存的分类"></a>缓存的分类</h2><p>从客户端到服务器，所涉及到的缓存有：浏览器缓存、h5本地离线存储、CDN缓存、代理服务器缓存、网关缓存。</p>
+<h2 id="浏览器缓存："><a href="#浏览器缓存：" class="headerlink" title="浏览器缓存："></a>浏览器缓存：</h2><ul>
+<li><p>meta设置</p>
+<p> meta http-equiv=pragma content=no-cache<br>禁止浏览器从本地计算机的缓存中访问页面内容。上述设定，访问者将无法脱机浏览。</p>
+<p> meta http-equiv=Cache-Control content=no-cache,must-revalidate<br>— Cache-Control指定请求和响应遵循的缓存机制；<br>— no-cache指示请求或响应消息不能缓存；<br>— must-revalidate，对于客户机的每次请求，代理服务器必须想服务器验证缓存是否过时;</p>
+<p>   meta http-equiv=expires content=0<br>可以用于设定网页的到期时间。一旦网页过期，必须到服务器上重新传输。</p>
+</li>
+<li><p>http header设置</p>
+<p>设置cache-control、expires、etags、last-modified<br>cache-control<br>— public表明其他用户也可以利用缓存<br>— private：表明缓存服务器只对特定用户提供资源缓存的服务，对于其他的用户，缓存服务器不会做出响应。<br>— no-cache：表明不缓存过期资源，其实是为了防止拿到过期的资源。<br>— no-store：暗示请求或响应中包含机密信息，是真正的禁用缓存。<br>— max-age：max-age = 秒，HTTP 1.1版本，资源在本地缓存多少秒。<br>expires<br>— Expires = 时间，HTTP 1.0 版本，缓存的载止时间，允许客户端在这个时间之前不去检查（发请求），Expires 的一个缺点就是，返回的到期时间是服务器端的时间，这样存在一个问题，如果客户端的时间与服务器的时间相差很大，那么误差就很大，所以在HTTP 1.1版开始，使用Cache-Control max-age=秒替代。<br>注：如果max-age和expires同时存在，以Cache-Control的max-age为准。<br>etags<br>根据实体内容生成一段hash字符串，标识资源的状态，由服务端产生，资源改变这个值就会改变，个人感觉类似于资源的一种抽象映射。<br>last-modified<br>— last-modifiedMon, 21 Nov 2016 032547 GMT，表明资源最后更新的时间。</p>
+</li>
+</ul>
+<h2 id="h5本地离线存储"><a href="#h5本地离线存储" class="headerlink" title="h5本地离线存储"></a>h5本地离线存储</h2><p> localstorage和sessionstorage</p>
+<ul>
+<li>localstorage是永久存储，而sessionstorage当窗口关闭的时候失效。</li>
+<li>localstorage对于同源窗口来说是可以共享的，但是sessionstorage在不同的窗口不共享。</li>
+</ul>
+<h2 id="CDN缓存："><a href="#CDN缓存：" class="headerlink" title="CDN缓存："></a>CDN缓存：</h2><p>   cdn（Content Delivery Network），即就是内容分发网络，就相当于是在客户端和服务端之间加一个cdn层，用户在浏览网站的时候，cdn会选择一个离用户最近的cdn边缘节点来响应用户的请求，这不但加快了用户体验速度也减轻了源服务器的负载。</p>
+<p>   工作原理：用户通过输入域名来访问页面，首先进行dns处理，dns解析服务器会将用户访问请求定位到离用户最近、负载最轻的cdn缓存服务器上，返回该cdn节点的ip地址，缓存服务器拿到数据后，一方面将数据返回浏览器，另一方面进行本地保存，之后再次访问，数据将从cdn缓存服务器中被返回。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/28/前端缓存机制/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-HTTP协议详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -245,7 +333,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在前端开发中我们常常需要考虑首屏加载时间，
+        <p>##简介##</p>
+<p>在前端开发中我们常常需要考虑首屏加载时间，
         
           <a class="article-more-a" href="/2018/03/09/从输入网址到页面展示，经历了什么？/#more">more >></a>
         
@@ -337,6 +426,252 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/03/01/hexo+github搭建属于自己的在线博客/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-js跨浏览器事件对象兼容" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/28/js跨浏览器事件对象兼容/">js跨浏览器事件对象兼容</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/28/js跨浏览器事件对象兼容/" class="archive-article-date">
+  	<time datetime="2018-02-28T02:36:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">var EventUtil = &#123;</span><br><span class="line"></span><br><span class="line">   addHandler : function(element, type, handler) &#123;</span><br><span class="line">        if (element.addEventListener) &#123;</span><br><span class="line">            // FF、chrom、ie9以上</span><br><span class="line">            element.addEventListener(type, handler, false);</span><br><span class="line">        &#125; else if (element.attachEvent) &#123;</span><br><span class="line">            // ie8 以下浏览器</span><br><span class="line">            element.attachEvent(&quot;on&quot; + type, handler);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            element[&quot;on&quot; + type] = handler;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">   removeHandler : function(element, type, handler) &#123;</span><br><span class="line">        if (element.removeEventListener) &#123;</span><br><span class="line">             element.removeEventListener(type, handler, false);</span><br><span class="line">        &#125; else if (element.detachEvent) &#123;</span><br><span class="line">             element.detachEvent(&quot;on&quot; + type, handler);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            element[&quot;on&quot; + type] = null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">   getEvent : function(event) &#123;</span><br><span class="line">        return event ? event : window.event;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">   getTarget : function(event) &#123;</span><br><span class="line">        return event.target || event.srcElement;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">   preventDefault : function(event) &#123;</span><br><span class="line">        if (event.preventDefault) &#123;</span><br><span class="line">            event.preventDefault();</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            event.returnValue = false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">   stopPropagation : function(event) &#123;</span><br><span class="line">        if (event.stopPropagation) &#123;</span><br><span class="line">            event.stopPropagation();</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            event.cancelBubble = true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="其他兼容问题"><a href="#其他兼容问题" class="headerlink" title="其他兼容问题"></a>其他兼容问题</h2><ul>
+<li>封装一个获取行外样式的函数:(兼容所有浏览器,包括低版本IE6,7)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">funtion getStyle(obj,name)&#123;</span><br><span class="line">    if(obj.currentStyle)&#123;</span><br><span class="line">        //IE</span><br><span class="line">        return obj.currentStyle[name];</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        //Chrom,FF</span><br><span class="line">        return getComputedStyle(obj,false)[name];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>调用：getStyle(oDiv,’width’);</em></p>
+<ul>
+<li><p>关于用“索引”获取字符串每一项出现的兼容性问题:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var str=&quot;abcde&quot;;</span><br><span class="line">aletr(str[1]);      //IE6,7不兼容</span><br><span class="line">兼容方法:str.charAt(i)    //全部浏览器都兼容</span><br><span class="line">var str=&quot;abcde&quot;;</span><br><span class="line">for(var i=0;i&lt;str.length;i++)&#123;</span><br><span class="line">  alert(str.charAt(i));   //放回字符串中的每一项</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关于DOM中 childNodes 获取子节点出现的兼容性问题:</p>
+<p>childNodes:获取子节点,<br> &nbsp; &nbsp; –IE6-8:获取的是元素节点,正常<br> &nbsp; &nbsp; –高版本浏览器:但是会包含文本节点和元素节点(不正常)<br>解决方法: 使用nodeType:节点的类型，并作出判断<br> &nbsp; &nbsp; –nodeType=3–&gt;文本节点<br> &nbsp; &nbsp; –nodeTyPE=1–&gt;元素节点</p>
+<p><em>例: 获取ul里所有的子节点，让所有的子节点背景色变成红色</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">获取元素子节点兼容的方法：</span><br><span class="line">var oUl=document.getElementById(&apos;ul&apos;);</span><br><span class="line">for(var i=0;i&lt;oUl.childNodes.length;i++)&#123;</span><br><span class="line">  if(oUl.childNodes[i].nodeType==1)&#123;</span><br><span class="line">    oUl.childNodes[i].style.background=&apos;red&apos;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">注：上面childNodes为我们带来的困扰完全可以有children属性来代替。children属性:只获取元素节点,不获取文本节点,兼容所有的浏览器</span><br><span class="line">    var oUl=document.getElementById(&apos;ul&apos;);</span><br><span class="line">    oUl.children.style.background=&quot;red&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关于使用 firstChild,lastChild 等，获取第一个/最后一个元素节点时产生的问题:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">兼容写法: 找到ul的第一个元素节点,并将其背景色变成红色</span><br><span class="line">   var oUl=document.getElementById(&apos;ul&apos;);</span><br><span class="line">   if(oUl.firstElementChild)&#123;</span><br><span class="line">     //高版本浏览器</span><br><span class="line">     oUl.firstElementChild.style.background=&apos;red&apos;;</span><br><span class="line">   &#125;else&#123;</span><br><span class="line">     //IE6-8</span><br><span class="line">     oUl.firstChild.style.background=&apos;red&apos;;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关于获取滚动条距离而出现的问题：</p>
+<blockquote>
+<p>  IE,Chrome: document.body.scrollTop<br>  FF: document.documentElement.scrollTop</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">兼容处理:</span><br><span class="line">var scrollTop=document.documentElement.scrollTop||document.body.scrollTop</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>ajax兼容问题：</p>
+<blockquote>
+<p> IE：new ActiveXObject() 　<br> FF、Chrome：new XMLHttpRequest()</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">解决办法：统一封装创建createXMLHttpRequest对象的方法</span><br><span class="line">function createXMLHttpRequest()&#123;  </span><br><span class="line">    var XML;  </span><br><span class="line">    try&#123;  </span><br><span class="line">        XML = new XMLHttpRequest();  </span><br><span class="line">    &#125;catch(e)&#123;  </span><br><span class="line">        try&#123;  </span><br><span class="line">            xmlHttp = new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);</span><br><span class="line">        &#125;catch(e)&#123;  </span><br><span class="line">            try&#123;  </span><br><span class="line">                xmlHttp = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);  </span><br><span class="line">            &#125;catch(e)&#123;  </span><br><span class="line">                alert(&quot;提示: 您的浏览器暂时不支持Ajax请求!&quot;);  </span><br><span class="line">                return false;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    return xmlHttp;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/28/js跨浏览器事件对象兼容/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-主流浏览器内核及其代表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/25/主流浏览器内核及其代表/">从主流浏览器内核及其代表</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/25/主流浏览器内核及其代表/" class="archive-article-date">
+  	<time datetime="2018-02-25T02:36:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><pre><code>浏览器内核可以分成两部分：渲染引擎(Rendering Engine)和 JS 引擎。&lt;!-- more --&gt;
+
+    渲染引擎负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入 CSS 等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。
+    JS 引擎则是解析 Javascript 语言，执行javascript语言来实现网页的动态效果。
+</code></pre><blockquote>
+<p>最开始渲染引擎和 JS 引擎并没有区分的很明确，后来 JS 引擎越来越独立，内核就倾向于只指渲染引擎。</p>
+</blockquote>
+<p><strong>内核的种类很多，但是常见的浏览器内核可以分这四种：</strong></p>
+<ul>
+<li>Trident（IE内核）</li>
+<li>Gecko（Firefox内核）</li>
+<li>Blink（Chrome内核）</li>
+<li>Webkit</li>
+</ul>
+<h2 id="常见浏览器内核"><a href="#常见浏览器内核" class="headerlink" title="常见浏览器内核"></a>常见浏览器内核</h2><p>1、IE浏览器：Trident内核，也是俗称的IE内核；</p>
+<p>2、Chrome浏览器内核：统称为Chrome内核，以前是Webkit内核，现在是Blink内核；</p>
+<p>3、Firefox浏览器内核：Gecko内核，俗称Firefox内核；</p>
+<p>4、Safari浏览器内核：Webkit内核；</p>
+<p>5、Opera浏览器内核：最初是自己的Presto内核，后来加入谷歌大军，从Webkit又到了Blink内核；</p>
+<p>6、360浏览器、猎豹浏览器内核：IE+Chrome双内核；</p>
+<p>7、搜狗、遨游、QQ浏览器内核：Trident（兼容模式）+Webkit（高速模式）；</p>
+<p>8、百度浏览器、世界之窗内核：IE内核；</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/25/主流浏览器内核及其代表/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-前端必备知识点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/24/前端必备知识点/">前端必备知识点</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/24/前端必备知识点/" class="archive-article-date">
+  	<time datetime="2018-02-24T02:36:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="简述同步和异步的区别"><a href="#简述同步和异步的区别" class="headerlink" title="简述同步和异步的区别 ##"></a>简述同步和异步的区别 ##
+        
+          <a class="article-more-a" href="/2018/02/24/前端必备知识点/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/24/前端必备知识点/">展开全文 >></a>
         </p>
       
 
